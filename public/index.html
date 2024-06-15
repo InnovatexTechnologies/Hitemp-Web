@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Home - HiTemp Industrial Ceramics</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/Style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .navbar-white-bg {
+        background-color: white;
+        transition: background-color 0.3s;
+      }
+      .nav-link-black {
+        color: black !important;
+        transition: color 0.3s;
+      }
+      body {
+        padding-top: 70px; /* Adjust based on the navbar height */
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden;">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      window.addEventListener("scroll", function () {
+        var navbar = document.querySelector(".navbar");
+        var navLinks = document.querySelectorAll(".nav-link");
+        var logo = document.getElementById("logo");
+
+        if (window.scrollY > 0) {
+          navbar.classList.add("navbar-white-bg");
+          navLinks.forEach(function (link) {
+            link.classList.add("nav-link-black");
+          });
+          // Change logo image source to scrolled version
+          logo.src = "/Images/LogoBlack.png";
+        } else {
+          navbar.classList.remove("navbar-white-bg");
+          navLinks.forEach(function (link) {
+            link.classList.remove("nav-link-black");
+          });
+          // Change logo image source to original version
+          logo.src = "/Images/LogoBlack.png";
+        }
+      });
+    </script>
+
+    <script>
+      function startCount() {
+        var numbers = document.querySelectorAll(".number");
+        var speed = 200; // Adjust speed as needed
+        var delay = 100; // Adjust delay as needed
+
+        numbers.forEach(function (number) {
+          var countTo = parseInt(number.getAttribute("data-count"));
+          var interval = countTo / speed;
+
+          var timer = setInterval(function () {
+            var currentValue = parseInt(number.innerText);
+            var newValue = currentValue + interval;
+
+            if (newValue >= countTo) {
+              clearInterval(timer);
+              newValue = countTo;
+            }
+
+            // Append plus sign after the number
+            number.innerText = Math.ceil(newValue) + "+";
+          }, delay);
+        });
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  </body>
+</html>
